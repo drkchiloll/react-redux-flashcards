@@ -1,6 +1,17 @@
 import React from 'react';
 
-export default class Sidebar extends React.Component {
+import { connect } from 'react-redux';
+import { addDeck, showAddDeck, hideAddDeck } from '../actions';
+
+const mapStateToProps = ({ decks, addingDeck }) => ({ decks, addingDeck });
+
+const mapDispatchToProps = dispatch => ({
+  addDeck: (name) => dispatch(addDeck(name)),
+  showAddDeck: () => dispatch(showAddDeck()),
+  hideAddDeck: () => dispatch(hideAddDeck())
+})
+
+class Sidebar extends React.Component {
   componentDidUpdate() {
     var el = this.refs.add;
     if(el) el.focus();
@@ -30,3 +41,5 @@ export default class Sidebar extends React.Component {
     this.props.hideAddDeck();
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
