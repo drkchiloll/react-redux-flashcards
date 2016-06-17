@@ -11,9 +11,16 @@ import * as reducers from './reducers';
 reducers.routing = routerReducer;
 
 import App from './components/App';
+import VisibleCards from './components/VisibleCards';
 
 const store = createStore(combineReducers(reducers));
 const history = syncHistoryWithStore(browserHistory, store);
+
+const route = (
+  <Route path='/' component={App}>
+    <Route path='/deck/:deckId' component={VisibleCards} />
+  </Route>
+);
 
 function run() {
   let state = store.getState();
@@ -21,7 +28,7 @@ function run() {
   ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
-        <Route path='/' component={App}></Route>
+        {route}
       </Router>
     </Provider>,
     document.querySelector('#root')
