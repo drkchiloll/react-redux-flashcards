@@ -2,6 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { addDeck, showAddDeck, hideAddDeck } from '../actions';
+import { Link } from 'react-router';
 
 const mapStateToProps = ({ decks, addingDeck }) => ({ decks, addingDeck });
 
@@ -26,7 +27,9 @@ class Sidebar extends React.Component {
         </button>
         <ul>
           {props.decks.map((deck, i) =>
-            <li key={i}> { deck.name } </li>
+            <li key={i}>
+              <Link to={`/deck/${deck.id}`}> { deck.name } </Link>
+            </li>
           )}
         </ul>
         { props.addingDeck &&
