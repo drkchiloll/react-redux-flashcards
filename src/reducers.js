@@ -1,3 +1,13 @@
+export const cardFilter = (state, action) => {
+  console.log(state);
+  switch(action.type) {
+    case 'FILTER_CARDS':
+      return action.data;
+    default:
+      return state || '';
+  }
+}
+
 export const cards = (state, action) => {
   switch(action.type) {
     case 'ADD_CARD':
