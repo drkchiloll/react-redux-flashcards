@@ -1,3 +1,12 @@
+export const showBack = (state, action) => {
+  switch(action.type) {
+    case 'SHOW_BACK':
+      return action.data || false;
+    default:
+      return state || false;
+  }
+}
+
 export const cardFilter = (state, action) => {
   console.log(state);
   switch(action.type) {
