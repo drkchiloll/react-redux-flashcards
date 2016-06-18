@@ -15,7 +15,7 @@ import App from './components/App';
 import VisibleCards from './components/VisibleCards';
 import NewCardModal from './components/NewCardModal';
 
-const store = createStore(combineReducers(reducers, localStore.get()));
+const store = createStore(combineReducers(reducers), localStore.get());
 const history = syncHistoryWithStore(browserHistory, store);
 
 const route = (
@@ -29,7 +29,6 @@ const route = (
 function run() {
   let state = store.getState();
   localStore.set(state, ['decks', 'cards']);
-  // console.log(state);
   ReactDOM.render(
     <Provider store={store}>
       <Router history={history}>
